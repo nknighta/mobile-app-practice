@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontFamily: "Roboto"),
               ),
             ),
+            
 
             Padding(
               padding: EdgeInsets.all(10.0),
@@ -62,7 +63,20 @@ class _MyHomePageState extends State<MyHomePage> {
               child: ElevatedButton(
                 onPressed:buttonPressed,
               child: Text(
-                  "tap me!",
+                  "TAP ME!",
+                  style: TextStyle(fontSize:32.0,
+                    color: const Color(0xff000000),
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "Roboto"),
+                )
+              )
+            ),
+            Padding(
+              padding: EdgeInsets.all(10.0),
+              child: ElevatedButton(
+                onPressed:showLicense,
+              child: Text(
+                  "LICENSE!",
                   style: TextStyle(fontSize:32.0,
                     color: const Color(0xff000000),
                     fontWeight: FontWeight.w400,
@@ -80,11 +94,29 @@ class _MyHomePageState extends State<MyHomePage> {
     showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: Text("Hello!"),
-          content: Text("This is sample."),
+          title: Text("is open page?"),
+          actions: <Widget>[
+            TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+            content: Text("You pressed the button!"),
         )
     );
   }
+  void showLicense() {
+    showAboutDialog(
+      context: context,
+      applicationName: 'Test Application',
+      applicationVersion: '0.1.0',
+      applicationIcon: Icon(Icons.flutter_dash),
+      children: [
+        Text('this is flutter practice application.'),
+        Text('This application is for learning Flutter.'),
+      ],
+    );
+  }
 }
-
-
