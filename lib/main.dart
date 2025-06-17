@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'layout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,15 +13,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      home: MyHomePage(
-        title:this.title,
-      ),
+      home: MyHomePage(title: this.title),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({required this.title}): super();
+  const MyHomePage({required this.title}) : super();
   final String title;
 
   @override
@@ -33,9 +32,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('App Name'),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -49,64 +45,94 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(
                   fontSize: 32.0,
                   fontWeight: FontWeight.w400,
-                  fontFamily: "Roboto"),
+                  fontFamily: "Roboto",
+                ),
               ),
             ),
-            
 
-            Padding(
-              padding: EdgeInsets.all(10.0),
-            ),
+            Padding(padding: EdgeInsets.all(10.0)),
 
             Padding(
               padding: EdgeInsets.all(10.0),
               child: ElevatedButton(
-                onPressed:buttonPressed,
-              child: Text(
+                onPressed: buttonPressed,
+                child: Text(
                   "TAP ME!",
-                  style: TextStyle(fontSize:32.0,
+                  style: TextStyle(
+                    fontSize: 32.0,
                     color: const Color(0xff000000),
                     fontWeight: FontWeight.w400,
-                    fontFamily: "Roboto"),
-                )
-              )
+                    fontFamily: "Roboto",
+                  ),
+                ),
+              ),
             ),
             Padding(
               padding: EdgeInsets.all(10.0),
               child: ElevatedButton(
-                onPressed:showLicense,
-              child: Text(
+                onPressed: showLicense,
+                child: Text(
                   "LICENSE!",
-                  style: TextStyle(fontSize:32.0,
+                  style: TextStyle(
+                    fontSize: 32.0,
                     color: const Color(0xff000000),
                     fontWeight: FontWeight.w400,
-                    fontFamily: "Roboto"),
-                )
-              )
+                    fontFamily: "Roboto",
+                  ),
+                ),
+              ),
             ),
+            Padding(
+              padding: EdgeInsets.all(10.0),
+              child: ElevatedButton(
+                onPressed: showSubView,
+                child: Text(
+                  "Sub View",
+                  style: TextStyle(
+                    fontSize: 32.0,
+                    color: const Color(0xff000000),
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "Roboto",
+                  ),
+                ),
+              ),
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  _message = 'You pressed the button!';
+                });
+              },
+              tooltip: 'Increment',
+              child: Icon(Icons.add),
+            ),
+            
           ],
         ),
       ),
     );
   }
 
-  void buttonPressed(){
+  void buttonPressed() {
     showDialog(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: Text("is open page?"),
-          actions: <Widget>[
-            TextButton(
-              child: Text("OK"),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-            content: Text("You pressed the button!"),
-        )
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text("is open page?"),
+        actions: <Widget>[
+          TextButton(
+            child: Text("OK"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            autofocus: false,
+            clipBehavior: Clip.hardEdge,
+          ),
+        ],
+        content: Text("You pressed the button!"),
+      ),
     );
   }
+
   void showLicense() {
     showAboutDialog(
       context: context,
@@ -117,6 +143,36 @@ class _MyHomePageState extends State<MyHomePage> {
         Text('this is flutter practice application.'),
         Text('This application is for learning Flutter.'),
       ],
+    );
+  }
+
+  void showSubView() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SubView()));
+  }
+}
+
+class SubView extends StatelessWidget {
+  const SubView({Key? key}) : super(key: key);
+  void backToMainView(BuildContext context) {
+    Navigator.pop(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sub View'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => backToMainView(context),
+        ),
+      ),
+      body: Center(
+        child: Text(
+          'This is a sub view.',
+          style: TextStyle(fontSize: 24.0),
+        ),
+      ), 
     );
   }
 }
