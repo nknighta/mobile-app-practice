@@ -1,4 +1,4 @@
-package com.example.mobile_app_class
+package technology.varius.apps.todo.mobile
 
 import io.flutter.embedding.android.FlutterActivity
 
