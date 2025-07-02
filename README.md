@@ -12,8 +12,6 @@ A secure Flutter project with Firebase integration and Google Sign-In functional
 
 ## Security
 
-This project implements secure configuration management using environment variables. **Please read [SECURITY_SETUP.md](SECURITY_SETUP.md) before running the application.**
-
 ### Quick Setup
 
 1. Copy the environment template:
@@ -41,7 +39,3 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-
-## Security Documentation
-
-For detailed security setup instructions, please see [SECURITY_SETUP.md](SECURITY_SETUP.md).
